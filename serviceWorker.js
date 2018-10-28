@@ -439,7 +439,7 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "index.html",
-    "revision": "482260be20658cf3f66c6538674b37ee"
+    "revision": "932e293a305fb13252c6704c42527e8e"
   },
   {
     "url": "index.php",
@@ -464,13 +464,5 @@ workbox.precaching.precacheAndRoute([
 ]);
 
 self.addEventListener('beforeinstallprompt', event => {
-    event.prompt();
-    event.userChoice
-        .then((choiceResult) => {
-            if (choiceResult.outcome === 'accepted') {
-                console.log('User accepted the A2HS prompt');
-            } else {
-                console.log('User dismissed the A2HS prompt');
-            }
-        });
+    event.prompt()
 })
