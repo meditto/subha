@@ -465,6 +465,7 @@ workbox.precaching.precacheAndRoute([
 
 let deferredPrompt;
 let btnAdd = self.querySelector('#install')
+console.log(self)
 
 self.addEventListener('beforeinstallprompt', event => {
     deferredPrompt = event
