@@ -439,19 +439,11 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "index.html",
-    "revision": "f7284ab4ff7c324c5eb46346f17569bf"
+    "revision": "f505b4cc1167e42846a2d3c7dea66be9"
   },
   {
-    "url": "index.php",
-    "revision": "d18ae736807d20a4a8ade44366b38be5"
-  },
-  {
-    "url": "js/app.270be966.js",
-    "revision": "86592021a8642217f54eb25cfedf2b55"
-  },
-  {
-    "url": "js/app.c388543b.js",
-    "revision": "2b59836c55d96fb057554172ae0733f3"
+    "url": "js/app.12919741.js",
+    "revision": "cdafdefe52177e32798ddcd4ea92419e"
   },
   {
     "url": "js/chunk-vendors.a8bcade5.js",
@@ -462,26 +454,3 @@ workbox.precaching.precacheAndRoute([
     "revision": "8fd006a5692daf1fb1c86efc91b9bc2b"
   }
 ]);
-
-let deferredPrompt;
-let btnAdd = self.querySelector('#install')
-console.log(self)
-
-self.addEventListener('beforeinstallprompt', event => {
-    deferredPrompt = event
-    btnAdd.style.display = "block"
-})
-
-btnAdd.addEventListener('click', (e) => {
-    btnAdd.style.display = 'none';
-    
-    deferredPrompt.userChoice
-        .then((choiceResult) => {
-            if (choiceResult.outcome === 'accepted') {
-                console.log('User accepted the A2HS prompt');
-            } else {
-                console.log('User dismissed the A2HS prompt');
-            }
-            deferredPrompt = null;
-        });
-});
