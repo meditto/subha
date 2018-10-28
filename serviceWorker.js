@@ -439,7 +439,7 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "index.html",
-    "revision": "932e293a305fb13252c6704c42527e8e"
+    "revision": "482260be20658cf3f66c6538674b37ee"
   },
   {
     "url": "index.php",
@@ -462,3 +462,25 @@ workbox.precaching.precacheAndRoute([
     "revision": "8fd006a5692daf1fb1c86efc91b9bc2b"
   }
 ]);
+
+var deferredPrompt;
+var btnAdd = document.querySelector('#install')
+
+self.addEventListener('beforeinstallprompt', event => {
+    deferredPrompt = event
+    btnAdd.style.display = "block"
+})
+
+btnAdd.addEventListener('click', (e) => {
+    btnAdd.style.display = 'none';
+    deferredPrompt.prompt();
+    deferredPrompt.userChoice
+        .then((choiceResult) => {
+            if (choiceResult.outcome === 'accepted') {
+                console.log('User accepted the A2HS prompt');
+            } else {
+                console.log('User dismissed the A2HS prompt');
+            }
+            deferredPrompt = null;
+        });
+});
