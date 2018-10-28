@@ -439,7 +439,7 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "index.html",
-    "revision": "932e293a305fb13252c6704c42527e8e"
+    "revision": "f7284ab4ff7c324c5eb46346f17569bf"
   },
   {
     "url": "index.php",
@@ -463,6 +463,24 @@ workbox.precaching.precacheAndRoute([
   }
 ]);
 
+let deferredPrompt;
+let btnAdd = self.querySelector('#install')
+
 self.addEventListener('beforeinstallprompt', event => {
-    event.prompt()
+    deferredPrompt = event
+    btnAdd.style.display = "block"
 })
+
+btnAdd.addEventListener('click', (e) => {
+    btnAdd.style.display = 'none';
+    
+    deferredPrompt.userChoice
+        .then((choiceResult) => {
+            if (choiceResult.outcome === 'accepted') {
+                console.log('User accepted the A2HS prompt');
+            } else {
+                console.log('User dismissed the A2HS prompt');
+            }
+            deferredPrompt = null;
+        });
+});
