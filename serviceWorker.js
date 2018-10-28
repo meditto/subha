@@ -463,24 +463,14 @@ workbox.precaching.precacheAndRoute([
   }
 ]);
 
-var deferredPrompt;
-var btnAdd = document.querySelector('#install')
-
 self.addEventListener('beforeinstallprompt', event => {
-    deferredPrompt = event
-    btnAdd.style.display = "block"
-})
-
-btnAdd.addEventListener('click', (e) => {
-    btnAdd.style.display = 'none';
-    deferredPrompt.prompt();
-    deferredPrompt.userChoice
+    event.prompt();
+    event.userChoice
         .then((choiceResult) => {
             if (choiceResult.outcome === 'accepted') {
                 console.log('User accepted the A2HS prompt');
             } else {
                 console.log('User dismissed the A2HS prompt');
             }
-            deferredPrompt = null;
         });
-});
+})
